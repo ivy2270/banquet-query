@@ -68,6 +68,8 @@
 
     let allGuests = [];
 
+    const RAW_BASE = "https://raw.githubusercontent.com/ivy2270/banquet-query/main/data";
+
     async function init() {
       if (!eventId) {
         showStatus('⚠️ 網址無效：未指定活動代碼 (?id=xxx)');
@@ -75,7 +77,7 @@
       }
 
       try {
-        const response = await fetch(`./data/${eventId}.json?t=${new Date().getTime()}`);
+        const response = await fetch(`${RAW_BASE}/${eventId}.json?t=${new Date().getTime()}`);
         if (!response.ok) {
           throw new Error('找不到該活動的桌次資料');
         }
