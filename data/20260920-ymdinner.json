@@ -1,0 +1,31 @@
+{
+  "config": {
+    "eventId": "20260920-ymdinner",
+    "eventName": "陽明50週年系慶校友聯誼晚宴",
+    "eventDate": "Sun Sep 20 2026 00:00:00 GMT+0800 (台北標準時間)",
+    "theme": "ym50",
+    "notice": "請於 18:00 前完成報到",
+    "bannerUrl": "https://ymdd-image-tw.s3.ap-east-2.amazonaws.com/wp-content/uploads/2026/07/banner01_processed.jpg",
+    "updatedAt": "2026-08-09T15:27:21.993Z"
+  },
+  "guests": [
+    {
+      "name": "王大明",
+      "table": "主桌 (VIP 1)",
+      "note": "榮譽理事長",
+      "veg": "是"
+    },
+    {
+      "name": "李小華",
+      "table": "第 5 桌",
+      "note": "台北分會",
+      "veg": ""
+    },
+    {
+      "name": "陳志明",
+      "table": "第 8 桌",
+      "note": "",
+      "veg": ""
+    }
+  ]
+}
