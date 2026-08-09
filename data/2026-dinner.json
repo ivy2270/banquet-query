@@ -5,23 +5,26 @@
     "eventDate": "Sun Aug 09 2026 00:00:00 GMT+0800 (台北標準時間)",
     "theme": "gold",
     "notice": "請於 18:00 前完成報到",
-    "updatedAt": "2026-08-09T05:09:55.554Z"
+    "updatedAt": "2026-08-09T06:01:16.084Z"
   },
   "guests": [
     {
       "name": "王大明",
       "table": "主桌 (VIP 1)",
-      "note": "榮譽理事長"
+      "note": "榮譽理事長",
+      "veg": "是"
     },
     {
       "name": "李小華",
       "table": "第 5 桌",
-      "note": "台北分會"
+      "note": "台北分會",
+      "veg": ""
     },
     {
       "name": "陳志明",
       "table": "第 8 桌",
-      "note": ""
+      "note": "",
+      "veg": ""
     }
   ]
 }
