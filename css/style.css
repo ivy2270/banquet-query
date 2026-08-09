@@ -1,0 +1,1581 @@
+/* ============================================================
+   晚宴桌次查詢系統
+   完整主題 CSS
+
+   主題：
+   1. theme-gold  → 黑金晚宴
+   2. theme-ink   → 古典水墨
+   3. theme-modern → 現代簡約
+   4. theme-ym50   → YM50 主題 (深藍典雅)
+
+   字體：
+   - 黑金 / YM50：昭源宋體 + 系統無襯線
+   - 水墨：朝華標題A（預留）+ 系統無襯線
+   - 現代：系統無襯線
+============================================================ */
+
+
+/* ============================================================
+   0. 字型設定
+============================================================ */
+
+/*
+ * 系統無襯線字體
+ *
+ * 用於：
+ * 搜尋框、日期、通知、備註、標籤、Footer 等 UI 文字
+ */
+ 
+:root {
+  --font-sans:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "PingFang TC",
+    "Microsoft JhengHei",
+    sans-serif;
+
+
+  /*
+   * 黑金 / YM50 - 昭源宋體
+   *
+   * HTML <head> 請加入：
+   *
+   * <link
+   *   href="https://font.emtech.cc/css/ChironSungHK"
+   *   rel="stylesheet"
+   * >
+   */
+  --font-serif:
+    "ChironSungHK",
+    "Noto Serif TC",
+    "Noto Serif CJK TC",
+    "PingFang TC",
+    "Microsoft JhengHei",
+    serif;
+
+
+  /*
+   * 水墨-霞鹜臻楷
+   */
+  --font-classic:
+    "LXGWZhenKai",    
+    "Noto Serif TC",
+    "Noto Serif CJK TC",
+    "PingFang TC",
+    "Microsoft JhengHei",
+    serif;
+}
+
+
+/* ============================================================
+   1. 基礎設定
+============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  min-height: 100%;
+}
+
+
+body {
+  font-family: var(--font-sans);
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 20px 16px;
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+/* ============================================================
+   2. 主要容器
+============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   3. Banner 圖片區塊
+============================================================ */
+
+.banner-container {
+  width: 100%;
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.banner-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ============================================================
+   4. 頂部活動標題
+============================================================ */
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+
+  margin-bottom: 8px;
+
+  line-height: 1.3;
+}
+
+
+/* ============================================================
+   5. 日期
+============================================================ */
+
+.date-badge {
+  display: inline-block;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  padding: 4px 12px;
+
+  border-radius: 20px;
+
+  margin-bottom: 12px;
+
+  opacity: 1;
+}
+
+
+/* ============================================================
+   6. 活動通知
+============================================================ */
+
+.notice-box {
+  font-size: 0.85rem;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  line-height: 1.4;
+
+  margin-top: 8px;
+}
+
+
+/* ============================================================
+   7. 搜尋區
+============================================================ */
+
+.search-section {
+  margin-bottom: 24px;
+}
+
+
+.search-box {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 16px;
+}
+
+
+.search-box input {
+  width: 100%;
+
+  padding: 14px 40px 14px 16px;
+
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.search-box input::placeholder {
+  opacity: 0.65;
+}
+
+
+.clear-btn {
+  position: absolute;
+
+  right: 12px;
+
+  background: none;
+  border: none;
+
+  font-family: var(--font-sans);
+
+  font-size: 1.2rem;
+
+  cursor: pointer;
+
+  padding: 4px 8px;
+
+  opacity: 0.75;
+
+  transition: opacity 0.2s ease;
+}
+
+
+.clear-btn:hover {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   8. 狀態提示
+============================================================ */
+
+.status-message {
+  text-align: center;
+
+  padding: 24px 0;
+
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+
+  opacity: 0.9;
+}
+
+
+/* ============================================================
+   9. 查詢結果列表
+============================================================ */
+
+.result-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+/* ============================================================
+   10. 賓客卡片
+============================================================ */
+
+.guest-card {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 20px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.guest-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+
+.name-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   11. 賓客姓名
+============================================================ */
+
+.guest-name {
+  font-size: 1.25rem;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   12. 素食標籤
+============================================================ */
+
+.veg-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  padding: 2px 8px;
+
+  border-radius: 12px;
+}
+
+
+/* ============================================================
+   13. 賓客備註
+============================================================ */
+
+.guest-note {
+  font-family: var(--font-sans);
+
+  font-size: 0.85rem;
+
+  opacity: 0.8;
+}
+
+
+/* ============================================================
+   14. 桌次
+============================================================ */
+
+.table-badge {
+  text-align: right;
+
+  flex-shrink: 0;
+
+  margin-left: 12px;
+}
+
+
+.table-label {
+  display: block;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.75rem;
+
+  opacity: 0.75;
+}
+
+
+.table-number {
+  font-size: 1.3rem;
+
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   15. Footer
+============================================================ */
+
+.footer {
+  text-align: center;
+
+  margin-top: 32px;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.8rem;
+
+  opacity: 0.7;
+}
+
+
+/* ============================================================
+   ============================================================
+   1. 黑金主題
+   ============================================================
+   ============================================================ */
+
+body.theme-gold {
+
+  background-color: #111112;
+
+  background-image:
+
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(212, 175, 55, 0.22) 0%,
+      rgba(212, 175, 55, 0.08) 35%,
+      transparent 70%
+    ),
+
+    linear-gradient(
+      rgba(8, 8, 9, 0.48),
+      rgba(8, 8, 9, 0.62)
+    ),
+
+    url('../images/bg-gold.png');
+
+
+  background-size:
+    cover,
+    cover,
+    cover;
+
+  background-position:
+    center,
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat;
+
+
+  color: #f8f1dc;
+}
+
+
+/* ============================================================
+   黑金：標題
+============================================================ */
+
+body.theme-gold .header h1 {
+
+  font-family: var(--font-serif);
+
+  font-size: 1.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: #f7e8b0;
+
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================================================
+   黑金：日期
+============================================================ */
+
+body.theme-gold .date-badge {
+
+  font-family: var(--font-sans);
+
+  font-weight: 500;
+
+  background:
+    rgba(212, 175, 55, 0.18);
+
+  color: #f4d875;
+
+  border:
+    1px solid rgba(212, 175, 55, 0.55);
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 0 10px rgba(212, 175, 55, 0.08);
+}
+
+
+/* ============================================================
+   黑金：活動通知
+============================================================ */
+
+body.theme-gold .notice-box {
+
+  font-family: var(--font-sans);
+
+  background:
+    rgba(20, 20, 22, 0.82);
+
+  color: #f1f1f1;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(6px);
+}
+
+
+/* ============================================================
+   黑金：搜尋框
+============================================================ */
+
+body.theme-gold .search-box input {
+
+  font-family: var(--font-sans);
+
+  background:
+    rgba(22, 22, 25, 0.94);
+
+  border:
+    1.5px solid rgba(212, 175, 55, 0.75);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+
+body.theme-gold .search-box input::placeholder {
+  color: #c9c9c9;
+}
+
+
+body.theme-gold .search-box input:focus {
+
+  border-color: #f0cf62;
+
+  box-shadow:
+    0 0 0 3px rgba(212, 175, 55, 0.15),
+    0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+
+body.theme-gold .clear-btn {
+  color: #e6c85c;
+}
+
+
+/* ============================================================
+   黑金：結果卡片
+============================================================ */
+
+body.theme-gold .guest-card {
+
+  background:
+    rgba(24, 24, 27, 0.94);
+
+  border:
+    1px solid rgba(212, 175, 55, 0.28);
+
+  color: #f5f5f5;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(6px);
+}
+
+
+/* ============================================================
+   黑金：姓名
+============================================================ */
+
+body.theme-gold .guest-name {
+
+  font-family: var(--font-serif);
+
+  font-weight: 500;
+
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   黑金：備註
+============================================================ */
+
+body.theme-gold .guest-note {
+
+  font-family: var(--font-sans);
+
+  color: #d0d0d0;
+}
+
+
+/* ============================================================
+   黑金：桌次標籤
+============================================================ */
+
+body.theme-gold .table-label {
+
+  font-family: var(--font-sans);
+
+  color: #bdbdbd;
+}
+
+
+/* ============================================================
+   黑金：桌號
+============================================================ */
+
+body.theme-gold .table-number {
+
+  font-family: var(--font-serif);
+
+  font-weight: 700;
+
+  color: #e2bd4f;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ============================================================
+   黑金：素食
+============================================================ */
+
+body.theme-gold .veg-badge {
+
+  font-family: var(--font-sans);
+
+  background:
+    rgba(46, 125, 50, 0.25);
+
+  color: #a5d6a7;
+
+  border:
+    1px solid rgba(129, 199, 132, 0.45);
+}
+
+
+/* ============================================================
+   黑金：狀態
+============================================================ */
+
+body.theme-gold .status-message {
+
+  font-family: var(--font-sans);
+
+  color: #dedede;
+}
+
+
+/* ============================================================
+   黑金：Footer
+============================================================ */
+
+body.theme-gold .footer {
+
+  font-family: var(--font-sans);
+
+  color: #d0d0d0;
+}
+
+
+/* ============================================================
+   ============================================================
+   2. 古典水墨主題
+   ============================================================
+   ============================================================ */
+
+body.theme-ink {
+
+  font-family: var(--font-sans);
+
+  background-color: #eee8dc;
+
+  background-image:
+
+    linear-gradient(
+      rgba(244, 240, 234, 0.52),
+      rgba(244, 240, 234, 0.52)
+    ),
+
+    url('../images/bg-ink.png');
+
+
+  background-size:
+    cover,
+    cover;
+
+  background-position:
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat;
+
+
+  color: #292724;
+}
+
+
+/* ============================================================
+   水墨：標題
+============================================================ */
+
+body.theme-ink .header h1 {
+
+  font-family: var(--font-classic);
+
+  font-size: 1.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.10em;
+
+  color: #252321;
+
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+
+/* ============================================================
+   水墨：日期
+============================================================ */
+
+body.theme-ink .date-badge {
+
+  font-family: var(--font-sans);
+
+  font-weight: 500;
+
+  background:
+    #292725;
+
+  color:
+    #f7f2e9;
+
+  border:
+    1px solid #292725;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ============================================================
+   水墨：活動通知
+============================================================ */
+
+body.theme-ink .notice-box {
+
+  font-family: var(--font-sans);
+
+  background:
+    rgba(255, 253, 248, 0.88);
+
+  color:
+    #383431;  
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(3px);
+}
+
+
+/* ============================================================
+   水墨：搜尋框
+============================================================ */
+
+body.theme-ink .search-box input {
+
+  font-family: var(--font-sans);
+
+  background:
+    rgba(255, 253, 249, 0.96);
+
+  border:
+    2px solid #393633;
+
+  color:
+    #292725;
+
+  border-radius:
+    8px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+body.theme-ink .search-box input::placeholder {
+  color: #77716b;
+}
+
+
+body.theme-ink .search-box input:focus {
+
+  border-color:
+    #22201e;
+
+  box-shadow:
+    0 0 0 3px rgba(43, 43, 43, 0.10),
+    0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+
+body.theme-ink .clear-btn {
+  color: #393633;
+}
+
+
+/* ============================================================
+   水墨：結果卡片
+============================================================ */
+
+body.theme-ink .guest-card {
+
+  background:
+    rgba(255, 253, 249, 0.95);
+
+  color:
+    #292725;
+
+  border-radius:
+    8px;
+
+  border:
+    1px solid rgba(60, 56, 52, 0.12);
+
+  border-bottom:
+    3px solid #4a4641;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
+
+  backdrop-filter:
+    blur(3px);
+}
+
+
+/* ============================================================
+   水墨：姓名
+============================================================ */
+
+body.theme-ink .guest-name {
+
+  font-family:
+    var(--font-classic);
+
+  font-weight:
+    700;
+
+  color:
+    #252321;
+}
+
+
+/* ============================================================
+   水墨：備註
+============================================================ */
+
+body.theme-ink .guest-note {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #5f5a55;
+}
+
+
+/* ============================================================
+   水墨：桌次標籤
+============================================================ */
+
+body.theme-ink .table-label {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #716b65;
+}
+
+
+/* ============================================================
+   水墨：桌號
+============================================================ */
+
+body.theme-ink .table-number {
+
+  font-family:
+    var(--font-classic);
+
+  font-weight:
+    700;
+
+  color:
+    #8c1d1d;
+
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+
+/* ============================================================
+   水墨：素食
+============================================================ */
+
+body.theme-ink .veg-badge {
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    #e8f5e9;
+
+  color:
+    #276b31;
+
+  border:
+    1px solid #a5d6a7;
+}
+
+
+/* ============================================================
+   水墨：狀態
+============================================================ */
+
+body.theme-ink .status-message {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #514c47;
+}
+
+
+/* ============================================================
+   水墨：Footer
+============================================================ */
+
+body.theme-ink .footer {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #625d57;
+}
+
+
+/* ============================================================
+   ============================================================
+   3. 現代簡約主題
+   ============================================================
+   ============================================================ */
+
+body.theme-modern {
+
+  font-family:
+    var(--font-sans);
+
+  background-color:
+    #f5f7f9;
+
+  background-image:
+
+    linear-gradient(
+      rgba(248, 249, 250, 0.58),
+      rgba(248, 249, 250, 0.58)
+    ),
+
+    radial-gradient(
+      #bfc7cf 1.3px,
+      transparent 1.3px
+    ),
+
+    url('../images/bg-modern.png');
+
+
+  background-size:
+
+    cover,
+
+    20px 20px,
+
+    cover;
+
+
+  background-position:
+
+    center,
+
+    center,
+
+    center;
+
+
+  background-repeat:
+
+    no-repeat,
+
+    repeat,
+
+    no-repeat;
+
+
+  color:
+    #20262d;
+}
+
+
+/* ============================================================
+   現代：標題
+============================================================ */
+
+body.theme-modern .header h1 {
+
+  font-family:
+    var(--font-sans);
+
+  font-weight:
+    700;
+
+  color:
+    #18232d;
+
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+
+/* ============================================================
+   現代：日期
+============================================================ */
+
+body.theme-modern .date-badge {
+
+  font-family:
+    var(--font-sans);
+
+  font-weight:
+    500;
+
+  background:
+    rgba(233, 236, 239, 0.92);
+
+  color:
+    #343a40;
+
+  border:
+    1px solid #ced4da;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   現代：活動通知
+============================================================ */
+
+body.theme-modern .notice-box {
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    rgba(231, 245, 255, 0.94);
+
+  color:
+    #155a91;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.06);
+
+  backdrop-filter:
+    blur(4px);
+}
+
+
+/* ============================================================
+   現代：搜尋框
+============================================================ */
+
+body.theme-modern .search-box input {
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1.5px solid #bfc7cf;
+
+  color:
+    #212529;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+body.theme-modern .search-box input::placeholder {
+  color:
+    #6c757d;
+}
+
+
+body.theme-modern .search-box input:focus {
+
+  border-color:
+    #228be6;
+
+  box-shadow:
+    0 0 0 3px rgba(34, 139, 230, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+body.theme-modern .clear-btn {
+  color:
+    #495057;
+}
+
+
+/* ============================================================
+   現代：結果卡片
+============================================================ */
+
+body.theme-modern .guest-card {
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color:
+    #212529;
+
+  border:
+    1px solid rgba(206, 212, 218, 0.9);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.07);
+
+  backdrop-filter:
+    blur(4px);
+}
+
+
+/* ============================================================
+   現代：姓名
+============================================================ */
+
+body.theme-modern .guest-name {
+
+  font-family:
+    var(--font-sans);
+
+  font-weight:
+    700;
+
+  color:
+    #18232d;
+}
+
+
+/* ============================================================
+   現代：備註
+============================================================ */
+
+body.theme-modern .guest-note {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #59636d;
+}
+
+
+/* ============================================================
+   現代：桌次標籤
+============================================================ */
+
+body.theme-modern .table-label {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #6c757d;
+}
+
+
+/* ============================================================
+   現代：桌號
+============================================================ */
+
+body.theme-modern .table-number {
+
+  font-family:
+    var(--font-sans);
+
+  font-weight:
+    800;
+
+  color:
+    #1971c2;
+}
+
+
+/* ============================================================
+   現代：素食
+============================================================ */
+
+body.theme-modern .veg-badge {
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    #ebfbee;
+
+  color:
+    #287a38;
+
+  border:
+    1px solid #b2f2bb;
+}
+
+
+/* ============================================================
+   現代：狀態
+============================================================ */
+
+body.theme-modern .status-message {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #495057;
+}
+
+
+/* ============================================================
+   現代：Footer
+============================================================ */
+
+body.theme-modern .footer {
+
+  font-family:
+    var(--font-sans);
+
+  color:
+    #68727c;
+}
+
+
+/* ============================================================
+   ============================================================
+   4. YM50 主題 (深藍典雅)
+   ============================================================
+   ============================================================ */
+
+body.theme-ym50 {
+
+  background-color: #081e51;
+
+  /* 不使用背景圖 */
+  background-image: none;
+
+  color: #e4d4bd;
+}
+
+
+/* ============================================================
+   YM50：標題
+============================================================ */
+
+body.theme-ym50 .header h1 {
+
+  /* 昭源宋體 */
+  font-family: var(--font-serif);
+
+  font-size: 1.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: #e4d4bd;
+
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ============================================================
+   YM50：日期
+============================================================ */
+
+body.theme-ym50 .date-badge {
+
+  font-family: var(--font-sans);
+
+  font-weight: 500;
+
+  background: rgba(128, 92, 153, 0.35);
+
+  color: #e4d4bd;
+
+  border: 1px solid #805c99;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ============================================================
+   YM50：活動通知
+============================================================ */
+
+body.theme-ym50 .notice-box {
+
+  font-family: var(--font-sans);
+
+  background: rgba(147, 147, 185, 0.18);
+
+  color: #f1f1f1;
+
+  border: 1px solid rgba(147, 147, 185, 0.35);
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(6px);
+}
+
+
+/* ============================================================
+   YM50：搜尋框
+============================================================ */
+
+body.theme-ym50 .search-box input {
+
+  font-family: var(--font-sans);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1.5px solid #805c99;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+body.theme-ym50 .search-box input::placeholder {
+  color: #9393b9;
+}
+
+
+body.theme-ym50 .search-box input:focus {
+
+  border-color: #e4d4bd;
+
+  box-shadow:
+    0 0 0 3px rgba(128, 92, 153, 0.3),
+    0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+
+body.theme-ym50 .clear-btn {
+  color: #9393b9;
+}
+
+
+/* ============================================================
+   YM50：結果卡片
+============================================================ */
+
+body.theme-ym50 .guest-card {
+
+  background: rgba(14, 41, 106, 0.85);
+
+  border: 1px solid #805c99;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(6px);
+}
+
+
+/* ============================================================
+   YM50：姓名
+============================================================ */
+
+body.theme-ym50 .guest-name {
+
+  /* 昭源宋體 */
+  font-family: var(--font-serif);
+
+  font-weight: 700;
+
+  color: #e4d4bd;
+}
+
+
+/* ============================================================
+   YM50：備註
+============================================================ */
+
+body.theme-ym50 .guest-note {
+
+  font-family: var(--font-sans);
+
+  color: #9393b9;
+}
+
+
+/* ============================================================
+   YM50：桌次標籤
+============================================================ */
+
+body.theme-ym50 .table-label {
+
+  font-family: var(--font-sans);
+
+  color: #9393b9;
+}
+
+
+/* ============================================================
+   YM50：桌號
+============================================================ */
+
+body.theme-ym50 .table-number {
+
+  /* 昭源宋體 */
+  font-family: var(--font-serif);
+
+  font-weight: 700;
+
+  color: #e4d4bd;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ============================================================
+   YM50：素食
+============================================================ */
+
+body.theme-ym50 .veg-badge {
+
+  font-family: var(--font-sans);
+
+  background: rgba(46, 125, 50, 0.3);
+
+  color: #a5d6a7;
+
+  border: 1px solid rgba(129, 199, 132, 0.45);
+}
+
+
+/* ============================================================
+   YM50：狀態
+============================================================ */
+
+body.theme-ym50 .status-message {
+
+  font-family: var(--font-sans);
+
+  color: #9393b9;
+}
+
+
+/* ============================================================
+   YM50：Footer
+============================================================ */
+
+body.theme-ym50 .footer {
+
+  font-family: var(--font-sans);
+
+  color: #9393b9;
+}
+
+
+/* ============================================================
+   5. 手機版
+============================================================ */
+
+@media (max-width: 480px) {
+
+  body {
+    padding:
+      16px 12px;
+  }
+
+
+  .header h1 {
+    font-size:
+      1.5rem;
+  }
+
+
+  .guest-card {
+    padding:
+      15px 16px;
+  }
+
+
+  .guest-name {
+    font-size:
+      1.18rem;
+  }
+
+
+  .table-number {
+    font-size:
+      1.25rem;
+  }
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晚宴桌次查詢</title>
+  
+  <!-- 預設引入昭源宋體 -->
+  <link href="https://font.emtech.cc/css/ChironSungHK" rel="stylesheet">
+  <link href="https://font.emtech.cc/css/LXGWZhenKai" rel="stylesheet">
+  
+  <!-- 主樣式表 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-gold">
+
+  <div class="container">
+    <!-- Banner 區塊 (若設定檔有提供網址則顯示) -->
+    <div id="banner-container" class="banner-container" style="display: none;">
+      <img id="banner-img" src="" alt="Event Banner">
+    </div>
+
+    <!-- 頂部活動標題區 -->
+    <header class="header">
+      <h1 id="event-name">晚宴桌次查詢</h1>
+      <p id="event-date" class="date-badge" style="display: none;"></p>
+      <div id="event-notice" class="notice-box" style="display: none;"></div>
+    </header>
+
+    <!-- 關鍵字搜尋框 -->
+    <main class="search-section">
+      <div class="search-box">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="請輸入您的姓名搜尋..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button id="clear-btn" class="clear-btn" style="display: none;">✕</button>
+      </div>
+
+      <!-- 狀態提示 -->
+      <div id="status-message" class="status-message">資料載入中...</div>
+
+      <!-- 查詢結果列表 -->
+      <div id="result-list" class="result-list"></div>
+    </main>
+
+    <footer class="footer">
+      <p>祝您用餐愉快</p>
+    </footer>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('id');
+
+    const bannerContainer = document.getElementById('banner-container');
+    const bannerImg = document.getElementById('banner-img');
+    const eventNameEl = document.getElementById('event-name');
+    const eventDateEl = document.getElementById('event-date');
+    const eventNoticeEl = document.getElementById('event-notice');
+    const searchInput = document.getElementById('search-input');
+    const clearBtn = document.getElementById('clear-btn');
+    const statusMsgEl = document.getElementById('status-message');
+    const resultListEl = document.getElementById('result-list');
+
+    let allGuests = [];
+
+    async function init() {
+      if (!eventId) {
+        showStatus('⚠️ 網址無效：未指定活動代碼 (?id=xxx)');
+        return;
+      }
+
+      try {
+        const response = await fetch(`./data/${eventId}.json?t=${new Date().getTime()}`);
+        if (!response.ok) {
+          throw new Error('找不到該活動的桌次資料');
+        }
+
+        const data = await response.json();
+        
+        renderEventConfig(data.config);
+        allGuests = data.guests || [];
+        showStatus('');
+        renderGuestList('');
+
+      } catch (err) {
+        console.error(err);
+        showStatus(`❌ 載入失敗：${err.message}`);
+      }
+    }
+
+    function renderEventConfig(config) {
+      if (!config) return;
+
+      document.title = config.eventName || '晚宴桌次查詢';
+      eventNameEl.textContent = config.eventName || '晚宴桌次查詢';
+      
+      // 1. 修正日期格式 (只保留 yyyy-MM-dd)
+      if (config.eventDate) {
+        const dateObj = new Date(config.eventDate);
+        if (!isNaN(dateObj.getTime())) {
+          const yyyy = dateObj.getFullYear();
+          const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+          const dd = String(dateObj.getDate()).padStart(2, '0');
+          eventDateEl.textContent = `${yyyy}-${mm}-${dd}`;
+        } else {
+          eventDateEl.textContent = config.eventDate;
+        }
+        eventDateEl.style.display = 'inline-block';
+      }
+
+      if (config.notice) {
+        eventNoticeEl.textContent = config.notice;
+        eventNoticeEl.style.display = 'block';
+      }
+
+      // 2. Banner 圖片處理
+      if (config.bannerUrl) {
+        bannerImg.src = config.bannerUrl;
+        bannerContainer.style.display = 'block';
+      }
+
+      // 3. 套用主題 Class
+      if (config.theme) {
+        document.body.className = `theme-${config.theme.toLowerCase()}`;
+      }
+
+      // 4. 客製化色彩覆蓋 (若 JSON 中有傳送 customPrimary 色彩)
+      if (config.customPrimary) {
+        document.documentElement.style.setProperty('--primary-color', config.customPrimary);
+      }
+    }
+
+    function renderGuestList(keyword) {
+      resultListEl.innerHTML = '';
+      const cleanKey = keyword.trim().toLowerCase();
+
+      if (!cleanKey) {
+        showStatus('請輸入姓名搜尋桌次');
+        return;
+      }
+
+      const filtered = allGuests.filter(g => g.name.toLowerCase().includes(cleanKey));
+
+      if (filtered.length === 0) {
+        showStatus('查無符合的賓客姓名，請確認輸入是否正確');
+        return;
+      }
+
+      showStatus('');
+
+      filtered.forEach(guest => {
+        const card = document.createElement('div');
+        card.className = 'guest-card';
+
+        let vegBadgeHtml = '';
+        if (guest.veg && guest.veg !== '否' && guest.veg !== '無') {
+          const vegText = (guest.veg === '是' || guest.veg === 'true') ? '素食' : guest.veg;
+          vegBadgeHtml = `<span class="veg-badge">🌱 ${escapeHtml(vegText)}</span>`;
+        }
+
+        card.innerHTML = `
+          <div class="guest-info">
+            <div class="name-row">
+              <span class="guest-name">${escapeHtml(guest.name)}</span>
+              ${vegBadgeHtml}
+            </div>
+            ${guest.note ? `<span class="guest-note">${escapeHtml(guest.note)}</span>` : ''}
+          </div>
+          <div class="table-badge">
+            <span class="table-label">桌次</span>
+            <span class="table-number">${escapeHtml(guest.table)}</span>
+          </div>
+        `;
+        resultListEl.appendChild(card);
+      });
+    }
+
+    function showStatus(text) {
+      if (text) {
+        statusMsgEl.textContent = text;
+        statusMsgEl.style.display = 'block';
+      } else {
+        statusMsgEl.style.display = 'none';
+      }
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      clearBtn.style.display = val ? 'block' : 'none';
+      renderGuestList(val);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      renderGuestList('');
+      searchInput.focus();
+    });
+
+    init();
+  </script>
+</body>
+</html>
