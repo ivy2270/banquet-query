@@ -1,0 +1,27 @@
+{
+  "config": {
+    "eventId": "2026-dinner",
+    "eventName": "2026 牙醫師公會年度感恩晚宴",
+    "eventDate": "Sun Aug 09 2026 00:00:00 GMT+0800 (台北標準時間)",
+    "theme": "gold",
+    "notice": "請於 18:00 前完成報到",
+    "updatedAt": "2026-08-09T05:09:55.554Z"
+  },
+  "guests": [
+    {
+      "name": "王大明",
+      "table": "主桌 (VIP 1)",
+      "note": "榮譽理事長"
+    },
+    {
+      "name": "李小華",
+      "table": "第 5 桌",
+      "note": "台北分會"
+    },
+    {
+      "name": "陳志明",
+      "table": "第 8 桌",
+      "note": ""
+    }
+  ]
+}
