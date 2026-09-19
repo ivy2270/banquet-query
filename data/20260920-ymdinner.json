@@ -6,7 +6,7 @@
     "theme": "ym50",
     "notice": "請於 18:00 前完成報到",
     "bannerUrl": "https://app.ymdd.tw/50th-anniversary/banner.jpg",
-    "updatedAt": "2026-09-19T05:11:10.437Z"
+    "updatedAt": "2026-09-19T05:50:52.709Z"
   },
   "guests": [
     {
@@ -996,7 +996,7 @@
     {
       "name": "王柏翔",
       "table": "校友交流桌",
-      "note": "",
+      "note": "需付1500",
       "veg": ""
     },
     {
@@ -1738,37 +1738,13 @@
       "veg": ""
     },
     {
-      "name": "高憶慈",
+      "name": "周潔",
       "table": "陽明牙醫診所",
       "note": "",
       "veg": ""
     },
     {
-      "name": "高憶慈",
-      "table": "陽明牙醫診所",
-      "note": "",
-      "veg": ""
-    },
-    {
-      "name": "高憶慈",
-      "table": "陽明牙醫診所",
-      "note": "",
-      "veg": ""
-    },
-    {
-      "name": "林少華",
-      "table": "陽明牙醫診所",
-      "note": "",
-      "veg": ""
-    },
-    {
-      "name": "林少華",
-      "table": "陽明牙醫診所",
-      "note": "",
-      "veg": ""
-    },
-    {
-      "name": "林少華",
+      "name": "陳大中",
       "table": "陽明牙醫診所",
       "note": "",
       "veg": ""
@@ -1781,6 +1757,24 @@
     },
     {
       "name": "周潔",
+      "table": "陽明牙醫診所",
+      "note": "",
+      "veg": ""
+    },
+    {
+      "name": "林少華",
+      "table": "陽明牙醫診所",
+      "note": "",
+      "veg": ""
+    },
+    {
+      "name": "林少華",
+      "table": "陽明牙醫診所",
+      "note": "",
+      "veg": ""
+    },
+    {
+      "name": "林少華",
       "table": "陽明牙醫診所",
       "note": "",
       "veg": ""
