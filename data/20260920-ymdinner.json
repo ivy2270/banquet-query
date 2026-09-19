@@ -6,7 +6,7 @@
     "theme": "ym50",
     "notice": "請於 18:00 前完成報到",
     "bannerUrl": "https://app.ymdd.tw/50th-anniversary/banner.jpg",
-    "updatedAt": "2026-09-18T10:17:49.840Z"
+    "updatedAt": "2026-09-19T05:11:10.437Z"
   },
   "guests": [
     {
@@ -1007,6 +1007,18 @@
     },
     {
       "name": "温斯勇",
+      "table": "校友交流桌",
+      "note": "",
+      "veg": ""
+    },
+    {
+      "name": "余宗坤",
+      "table": "校友交流桌",
+      "note": "",
+      "veg": ""
+    },
+    {
+      "name": "余宗坤",
       "table": "校友交流桌",
       "note": "",
       "veg": ""
