@@ -6,7 +6,7 @@
     "theme": "ym50",
     "notice": "請於 18:00 前完成報到",
     "bannerUrl": "https://app.ymdd.tw/50th-anniversary/banner.jpg",
-    "updatedAt": "2026-09-20T05:09:52.258Z"
+    "updatedAt": "2026-09-20T06:17:24.233Z"
   },
   "guests": [
     {
@@ -1783,6 +1783,12 @@
       "name": "柯子怡",
       "table": "陽明牙醫診所",
       "note": "",
+      "veg": ""
+    },
+    {
+      "name": "高宇峰",
+      "table": "陽明牙醫診所",
+      "note": "需付1500",
       "veg": ""
     },
     {
